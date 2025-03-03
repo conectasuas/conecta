@@ -1,12 +1,5 @@
+js
 
-📌 **Solução:** Remover esse trecho duplicado.
-
----
-
-### ✅ **Correção do código**
-Aqui está o código corrigido e sem erros:
-
-```js
 // 1. Lógica de Login Simples (exemplo apenas)
 const btnLogin = document.getElementById('btn-login');
 if (btnLogin) {
