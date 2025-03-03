@@ -27,13 +27,25 @@ if (formConsulta) {
   formConsulta.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const nome = document.getElementById('nome').value;
-    const nis = document.getElementById('nis').value;
+    const nis = document.getElementById('nis').value; // Pegamos só o NIS
 
-    // Aqui vamos chamar a rota /consulta do servidor usando fetch()
     try {
-      const response = await fetch(`/consulta?nome=${nome}&nis=${nis}`);
-      const mensagem = await response.text();
+      const response = await fetch(`/consulta?nis=${nis}`);
+      const data = await response.json(); // Recebemos um JSON
+
+      const mensagemResultado = document.getElementById('mensagem-resultado');
+
+      if (data.encontrado) {
+        mensagemResultado.innerHTML = `<strong>Nome:</strong> ${data.nome} <br> <strong>Atenção:</strong> Você deve comparecer ao setor de Cadastro Único para regularização.`;
+      } else {
+        mensagemResultado.innerHTML = "NIS não encontrado. Verifique e tente novamente.";
+      }
+    } catch (error) {
+      console.error('Erro na consulta:', error);
+    }
+  });
+}
+
 
       // Exibir a mensagem de resposta na tela
       const mensagemResultado = document.getElementById('mensagem-resultado');

@@ -7,16 +7,17 @@
 </head>
 <body>
   <div class="container">
-    <h1 id="nome-municipio">NOME DO MUNICÍPIO</h1>
-    <form id="form-consulta">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
+    <h1 id="nome-municipio">SISTEMA DE CONSULTA</h1>
+   <form id="form-consulta" class="form-user">
+  <label for="nis">NIS:</label>
+  <input type="text" id="nis" placeholder="Digite seu NIS" required />
 
-      <label for="nis">NIS:</label>
-      <input type="text" id="nis" name="nis" placeholder="Digite seu NIS" required />
+  <button type="submit">Consultar</button>
+</form>
 
-      <button type="submit">Consultar</button>
-    </form>
+<!-- Aqui será exibida a mensagem após a consulta -->
+<div id="mensagem-resultado"></div>
+
 
     <div id="mensagem-resultado"></div>
   </div>

@@ -1,8 +1,5 @@
 // server.js
 
-
-
-
 // 1. Importações
 const express = require('express');         // Framework para criar servidor web
 const multer = require('multer');           // Biblioteca para receber uploads de arquivo
@@ -76,38 +73,36 @@ app.post('/upload', upload.single('arquivoDados'), (req, res) => {
   res.redirect('/admin.html?upload_sucesso=1');
 });
 
-
-// 9. Rota de consulta (chamada pela página index.html via fetch ou formulário)
+// **9. Rota de consulta (modificada para buscar apenas pelo NIS)**
 app.get('/consulta', (req, res) => {
-  // Recebemos o nome e nis da query string (URL)...
-  const nomeQuery = (req.query.nome || '').toLowerCase().trim();
+  // **ANTES: Pegava nome e nis**
+  // const nomeQuery = (req.query.nome || '').toLowerCase().trim();
   const nisQuery = (req.query.nis || '').trim();
 
-  // Procurar nos dadosCadastrados se existe algum registro com
-  // nome e nis compatíveis
+  // **ANTES: Buscava por nome e nis**
   const encontrado = dadosCadastrados.find((pessoa) => {
-    // Usamos toLowerCase() para comparar sem levar em conta maiúsculas/minúsculas
-    const nomeCadastrado = pessoa.nome.toLowerCase().trim();
     const nisCadastrado = String(pessoa.nis).trim();
-
-    return (nomeCadastrado === nomeQuery && nisCadastrado === nisQuery);
+    return (nisCadastrado === nisQuery);
   });
 
-  // Se encontrar, significa que precisa atualizar
+  // **ANTES: Respondia apenas se ambos nome e nis estivessem corretos**
   if (encontrado) {
-    res.send('Você precisa atualizar seu cadastro! Compareça ao Setor de Cadastro Único.');
+    res.json({
+      encontrado: true,
+      nome: encontrado.nome, 
+      mensagem: "Você deve comparecer ao setor de Cadastro Único para regularização."
+    });
   } else {
-    // Se não encontrar, está atualizado
-    res.send('Seu cadastro está atualizado!');
+    res.json({
+      encontrado: false,
+      mensagem: "NIS não encontrado. Verifique e tente novamente."
+    });
   }
 });
-
-
 
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
-
 
 // 10. Iniciando o servidor
 app.listen(PORT, () => {
