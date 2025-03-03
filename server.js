@@ -102,6 +102,13 @@ app.get('/consulta', (req, res) => {
   }
 });
 
+
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+
 // 10. Iniciando o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}. Acesse http://localhost:${PORT}`);
