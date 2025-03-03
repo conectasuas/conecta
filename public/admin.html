@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Cadastro Único</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container admin-container">
+
+    <h1>Área do Administrador</h1>
+
+    <!-- Formulário de login (exemplo simples) -->
+    <form id="form-login" class="form-admin">
+      <label for="admin-user">Usuário:</label>
+      <input type="text" id="admin-user" placeholder="Digite seu usuário" required/>
+
+      <label for="admin-pass">Senha:</label>
+      <input type="password" id="admin-pass" placeholder="Digite sua senha" required/>
+
+      <button type="button" id="btn-login">Login</button>
+    </form>
+
+    <!-- Formulário de upload (escondido inicialmente, aparecerá após login) -->
+    <form id="form-upload" class="form-admin" action="/upload" method="POST" enctype="multipart/form-data" style="display:none;">
+      <h2>Enviar lista de atualização</h2>
+      <input type="file" name="arquivoDados" required />
+      <button type="submit">Enviar</button>
+    </form>
+
+    <!-- Mensagem de sucesso no upload (se houver) -->
+    <div id="mensagem-upload">
+      <script>
+        // Se na URL tiver ?upload_sucesso=1, exibir mensagem
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('upload_sucesso') === '1') {
+          document.write('Arquivo enviado com sucesso!');
+        }
+      </script>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

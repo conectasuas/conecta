@@ -1,0 +1,73 @@
+/* Fundo azul-escuro em degradê */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #00264d, #005c99);
+  font-family: Arial, sans-serif;
+  color: #fff; /* Texto branco */
+}
+
+/* Centralizar conteudo em tela cheia */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Titulo do municipio */
+#nome-municipio {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 400px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Botao */
+button {
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Mensagem de resultado */
+#mensagem-resultado {
+  margin-top: 20px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* Admin Container */
+.admin-container {
+  margin-top: 50px;
+}
+
+.form-admin {
+  margin: 20px 0;
+  width: 80%;
+  max-width: 400px;
+}
