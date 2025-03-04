@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); 
 const multer = require('multer');
 const path = require('path');
 const XLSX = require('xlsx');
@@ -14,10 +14,20 @@ const upload = multer({ storage: multer.memoryStorage() });
 // Dados em memória
 let dadosCadastrados = [];
 
+// Middleware de autenticação
+function isAuthenticated(req, res, next) {
+  if (req.user) {
+    return next();
+  }
+  res.status(403).send('Acesso negado');
+}
+
 // Rotas
 app.get('/consulta', (req, res) => { /* ... código corrigido ... */ });
 app.post('/upload', upload.single('arquivoDados'), (req, res) => { /* ... código corrigido ... */ });
-app.get('/admin', is Authenticated, (req, res) => { /* ... código corrigido ... */ });
+app.get('/admin', isAuthenticated, (req, res) => {
+  res.send('Bem-vindo à área administrativa!');
+});
 
 // Inicialização
 const PORT = process.env.PORT || 3000;
