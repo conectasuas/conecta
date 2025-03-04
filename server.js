@@ -17,7 +17,7 @@ let dadosCadastrados = [];
 // Rotas
 app.get('/consulta', (req, res) => { /* ... código corrigido ... */ });
 app.post('/upload', upload.single('arquivoDados'), (req, res) => { /* ... código corrigido ... */ });
-app.get('/admin', isAuthenticated, (req, res) => { /* ... código corrigido ... */ });
+app.get('/admin', is Authenticated, (req, res) => { /* ... código corrigido ... */ });
 
 // Inicialização
 const PORT = process.env.PORT || 3000;
