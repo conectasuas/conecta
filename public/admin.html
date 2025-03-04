@@ -1,44 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin - Cadastro Único</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Área Administrativa</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container admin-container">
-
-    <h1>Área do Administrador</h1>
-
-    <!-- Formulário de login (exemplo simples) -->
-    <form id="form-login" class="form-admin">
-      <label for="admin-user">Usuário:</label>
-      <input type="text" id="admin-user" placeholder="Digite seu usuário" required/>
-
-      <label for="admin-pass">Senha:</label>
-      <input type="password" id="admin-pass" placeholder="Digite sua senha" required/>
-
-      <button type="button" id="btn-login">Login</button>
+  <div id="login-section">
+    <form id="form-login">
+      <input type="text" id="admin-user" placeholder="Usuário" required>
+      <input type="password" id="admin-pass" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
     </form>
+  </div>
 
-    <!-- Formulário de upload (escondido inicialmente, aparecerá após login) -->
-    <form id="form-upload" class="form-admin" action="/upload" method="POST" enctype="multipart/form-data" style="display:none;">
-      <h2>Enviar lista de atualização</h2>
-      <input type="file" name="arquivoDados" required />
-      <button type="submit">Enviar</button>
+  <div id="upload-section" style="display: none;">
+    <form id="form-upload" enctype="multipart/form-data">
+      <input type="file" name="arquivoDados" accept=".xlsx, .csv" required>
+      <button type="submit">Enviar Arquivo</button>
     </form>
-
-    <!-- Mensagem de sucesso no upload (se houver) -->
-    <div id="mensagem-upload">
-      <script>
-        // Se na URL tiver ?upload_sucesso=1, exibir mensagem
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('upload_sucesso') === '1') {
-          document.write('Arquivo enviado com sucesso!');
-        }
-      </script>
-    </div>
-
   </div>
 
   <script src="script.js"></script>
